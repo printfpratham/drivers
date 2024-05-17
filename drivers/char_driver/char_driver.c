@@ -12,7 +12,6 @@
 
 #define BUF_SIZE 512
 
-static uint8_t *kernel_buffer; 
 dev_t dev = 0;
 static struct class *dev_class;
 static struct cdev etx_cdev;
@@ -96,7 +95,7 @@ static int __init etx_driver_init(void)
         }
 
         /*Creating struct class*/
-        if(IS_ERR(dev_class = class_create("etx_class"))){
+        if(IS_ERR(dev_class = class_create(THIS_MODULE,"etx_class"))){
             pr_err("Cannot create the struct class\n");
             goto r_class;
         }
